@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+          rel="stylesheet"    href="./node_modules/bootstrap/dist/css/bootstrap.min.css"/>
+          <link rel="stylesheet" href="all.css">
+        <script src="./node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    
+        <title>My website </title>
+        <link rel="icon" type="image/png" href="./so1.jpg"  >
+          </head>
+      <body>
+    
+            <!-- NAVBAR -->
+            <div class="container my-3    " >
+
+              <div class="container d-flex justify-content-center  ">
+         
+                     <nav class="navbar navbar-expand-lg bg-body-tertiary col-lg-9 col-md-10 col-sm-11 col-xs-11   rounded-2 " >
+                         <div class="d-flex  SocialNav " style="align-items: center; gap: 3rem;padding-left: 2rem;">
+                           <a class="navbar-brand disabled">Social website</a>
+                          
+                           <div style="display: flex;gap: 2rem;">
+                            <a class="nav-link active" aria-current="page" href="index.html">Home</a>
+                            <a class="nav-link" onclick="onClickProfile()" style="cursor: pointer;">Profile</a>
+   
+                           </div>
+                          
+                         
+                         </div>
+                  
+                         <div class="container d-flex justify-content-end  " id="loginAndRegDev" > 
+                             <button  type="button" class="btn btn-outline-success mx-1"  id="login-btn" data-bs-toggle="modal" data-bs-target="#login-Modal" >Log in</button>
+                             <button type="button" class="btn btn-outline-success" id="reg-btn"  data-bs-toggle="modal" data-bs-target="#register-Modal" >Register</button>
+                         </div>
+  
+                         <div class="container d-flex justify-content-end  "  id="logOutDev" > 
+                         <div   class="nav-img-name">
+  
+                          <img id="profileImg-nav" src="./2.png" class="img-nav" alt="" >
+                          <b id="username-nav" style="margin-right: 10px;margin-left: 5px;"">@odai</b>
+  
+                         </div>
+                          
+                          <button  type="button" class="btn btn-outline-danger mx-1"  id="logOut-btn" data-bs-toggle="modal" onclick="logOut()"  >Log Out</button>
+                      </div>
+         
+                 </div>
+                            
+         
+             
+         
+                     </nav>
+         
+         
+         
+         
+         
+         
+             
+         
+                 </div>
+         
+          <!-- //  NAVBAR // -->
+  
+
+
+
+              <!-- modals -->
+            <!--modal login-->
+            <div class="modal fade" id="login-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Login </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <form>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Username:</label>
+                          <input type="email" class="form-control" id="userNameInput" >
+                        </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Password:</label>
+                          <input type="password" class="form-control" id="passwordInput">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary"  onclick="loginOpen()">Login</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- // modal login //-->
+  
+  
+              <!-- REGISTER MODAL -->
+  
+              <div  style="height: 500px;" class="modal fade" id="register-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <!-- <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="exampleModalLabel">Register </h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div> -->
+                    <div class="modal-body">
+                      <form>
+  
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Name :</label>
+                          <input type="email" class="form-control" id="name-input-register" >
+                        </div>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Image profile :</label>
+                          <input type="file" class="form-control" id="img-input-register" >
+  
+                        </div>
+                        <div class="mb-3">
+                          <label for="recipient-name" class="col-form-label">Username:</label>
+                          <input type="email" class="form-control" id="user-input-register" >
+                        </div>
+                        <div class="mb-3">
+                          <label for="message-text" class="col-form-label">Password:</label>
+                          <input type="password" class="form-control" id="password-input-register">
+                        </div>
+                      </form>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary"  onclick="RegisterOpen()">Register</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+  
+              <!--// REGISTER MODAL // -->
+  
+  
+                  <!-- CREATE POST MODAL -->
+  
+                  <div class="modal fade " id="create-post-Modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog ">
+                      <div class="modal-content">
+                       
+                        <div class="modal-body">
+                          <form>
+      
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label mx-2" >Title :</label>
+                              <input type="email" class="form-control" id="create-post-title" >
+                            </div>
+                        
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label mx-2">Body :</label>
+                          <textarea id="create-post-body" style="width: 100%; height: 100px;resize: none;border: 1px solid rgb(178, 176, 176);border-radius: 10px;padding-left: 10px;padding-right: 10px;padding-top: 5px;padding-bottom: 5px;"></textarea>
+                            </div>
+  
+                            <div class="mb-3">
+                              <label for="recipient-name" class="col-form-label mx-2">Image :</label>
+                              <input type="file" class="form-control" id="create-post-img" >
+  
+                            </div>
+                        
+                          </form>
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                          <button type="button" class="btn btn-primary"  onclick="createPost()">Create</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+      
+                  <!--// CREATE POST MODAL // -->
+  
+  
+                     <!-- //  modals // -->
+
+
+                     <div id="showAlert" class="show fade" ></div>
+
+    
+                     <div class="container my-3    " > 
+    
+                      <div class="container d-flex  justify-content-center  ">
+                 
+                             <div class="  col-10 " >
+                                  <h3  style="color: rgb(139, 139, 139);margin-top: 5rem;text-align: center;"  ><span id="userName-post">odai</span> posts </h3>
+
+
+                             </div>
+
+
+                            
+                                 </div>
+
+
+                                 
+
+
+                                 <div class="container d-flex  justify-content-center my-4 " id="userPost">
+                 
+                                  <div class=" col-10   " >
+     
+     
+                                    <div class="card d-flex   shadow-sm " >
+                                      <div class="card-header ">
+                                        <img src="" class="rounded-circle "   style="width: 40px; height: 40px;">
+                                        <b>@</b>
+
+                                        <span class="mx-1 fw-bold" >Odai_Adawi </span>
+                                      </div>
+                                      <div class="card-body">
+                                       <img src=""  style="width: 100%;" >
+                                          <p class="my-2 mx-2 " style="color: rgb(163, 160, 160);">2 min ago</p>
+                                          <h2 class=" mx-2">title</h2>
+                                          <p class="mx-2">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cupiditate temporibus voluptatum quae eligendi iste consectetur, et deserunt natus dignissimos inventore odit magni eius officia consequatur quibusdam velit cumque corporis ea!</p>
+                                          <hr>
+                                          <div   style="display: block;" > 
+                                          
+                                            <h6 class="mx-2 my-3">Comment(3)</h6>
+
+                                            </div>
+                                        <div id="comments " class=" ">
+
+                                          <div id="comment" style="background-color: rgb(240, 234, 234);" class="p-3  my-2">
+
+                                            <div id="" >
+                                              <img src="./2.png" style="width: 30px;height: 30px; border-radius: 50%;">
+                                              <b>@odai</b>
+                                            </div>
+                                            <div id="contnt-comment">
+                                              <p class="my-1" style="margin-left: 2rem;">Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero, fugit ea explicabo officiis eaque autem impedit cupiditate perspiciatis commodi saepe corrupti odio, consequatur qui ab corporis maxime dignissimos expedita? Ea.</p>
+                                            </div>
+                                          </div>
+                                         </div>
+
+                                         <!-- add comment dev  -->
+                                       
+                                         <div style="display: flex;margin-top: 15px;">
+                                          <input placeholder="Add your comment here  " type="text" class="addCommentStyle">
+                                          <button type="button" class="btn btn-outline-success " style="margin-left: 10px;"><b>Add Comment</b></button>
+                                        </div>
+
+                                        <!-- //  add comment dev //-->
+
+
+                                           
+
+
+                                            </div>
+                                            
+                                          </div>
+                                          
+                                      </div>
+                                  </div>
+     
+     
+                                 
+                                      </div>
+
+
+
+                                      
+
+                                      
+                                 </div>
+
+
+
+
+</body>
+
+<script src="main.js"></script>
+<script src="postdetails.js"> </script>
+
+</html>
